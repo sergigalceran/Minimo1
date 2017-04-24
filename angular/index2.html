@@ -1,0 +1,38 @@
+    <div class="container">
+	<div class="jumbotron text-center" >
+        <h1>Nº de Asignaturas: <span class="label label-success">{{ asignaturas.length }}</span></h1>
+    </div>
+
+    <div class="row">
+			<div class="col-sm-6 col-sm-offset-1">
+            <table class="table table-striped">
+                <tr class="info">
+                    <td>Nombre</td>
+                    <td>Alumno</td>
+                    <td>Fecha creacion</td>
+                </tr>
+                <tr ng-repeat="asignatura in asignaturas" ng-click="selectSubject(asignatura)">
+                    <td>{{ asignatura.nombre }}</td>
+                    <td>{{ asignatura.alumnos }}</td>
+                    <td>{{ asignatura.fecha }}</td>
+                </tr>
+            </table>        
+    </div>
+        <div class="col-sm-4 col-sm-offset-1 text-center">
+
+            <form name="miForm">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Asignatura" ng-model="newSubject.nombre" required>
+                    <br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Alumnos" ng-model="newSubject.alumnos" required>
+                </div>
+
+                <!-- Acciones que podemos realizar en el formulario -->
+                <button type="submit" class="btn btn-success btn-lg" ng-click="registrarAsignatura(newSubject)" ng-disabled="miForm.$invalid || selected">Registrar</button>
+                <button type="submit" class="btn btn-warning btn-lg" ng-click="modificarAsignatura(newSubject)" ng-disabled="!newSubject.nombre || !newSubject.alumnos || !selected">Modificar</button>
+                <button type="submit" class="btn btn-danger btn-lg" ng-click="borrarSubject(newSubject)" ng-disabled="!newSubject.nombre || !newSubject.alumnos || !selected">Borrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,59 @@
+	<div class="container">
+		<div class="jumbotron text-center" ng-prueba>
+			<h1>Nº de estudiantes: <span class="label label-success"> {{ personas.length }} </span></h1>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-1">
+				<table class="table table-striped">
+					<tr class="info">
+						<td>Nombre</td>
+						<td>Direccion</td>
+						<td>Telefono fijo</td>
+                        <td>Telefono movil</td>
+						<td>Estudios</td>
+					</tr>
+					<tr ng-repeat="persona in personas | orderBy:'nombre':false" ng-click="selectPerson(persona)">
+						<td> {{persona.nombre}} </td>
+						<td> {{persona.direccion}} </td>
+						<td> {{persona.telefono.fijo}} </td>
+                        <td> {{persona.telefono.movil}} </td>
+                        <td> {{persona.estudios}} </td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-4 col-sm-offset-1 text-center">
+				<form name="myForm">
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="Nombre" ng-model="newPersona.nombre" required>
+						<br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Direccion" ng-model="newPersona.direccion" required>
+						<br>
+						<input type="number" class="form-control input-lg text-center" placeholder="Fijo" ng-model="newPersona.telefono.fijo" required>
+						<br>                        
+                        <input type="number" class="form-control input-lg text-center" placeholder="Movil" ng-model="newPersona.telefono.movil" required>
+						<br>                        
+                        <input type="text" class="form-control input-lg text-center" placeholder="Estudios" ng-model="newPersona.estudios" required>
+												
+						
+					</div>
+
+					<!-- Acciones que podemos realizar en el formulario -->
+					<button type="submit" class="btn btn-success btn-lg" ng-click="registrarPersona()" ng-disabled= "!newPersona.nombre || !newPersona.direccion || selected || !newPersona.estudios" >Registrar</button>
+					<button type="submit" class="btn btn-warning btn-lg" ng-click="modificarPersona(newPersona)" ng-disabled="!newPersona.nombre || !newPersona.direccion || !selected">Modificar</button>
+					<button type="submit" class="btn btn-danger btn-lg" ng-click="borrarPersona(newPersona)" ng-disabled="!newPersona.nombre || !newPersona.direccion || !selected">Borrar</button>
+					<br>
+					<br>
+					<input type="text" class="form-control input-lg text-center" placeholder="Alumno" ng-model="newPersona.nombre" required>
+					<br>
+					<button type="submit" class="btn btn-succes btn-lg" ng-click="buscarPersona(newPersona)" ng-disabled="!newPersona.nombre">Buscar nombre</button>
+					<br>
+					<br>
+					<input type="text" class="form-control input-lg text-center" placeholder="Estudios" ng-model="newPersona.estudios" required>
+					<br>
+					<button type="submit" class="btn btn-succes btn-lg" ng-click="buscarPersona2(newPersona)" ng-disabled="!newPersona.estudios">Buscar estudios</button>
+					
+				</form>
+			</div>
+		</div> 
+	</div>
